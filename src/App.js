@@ -1,29 +1,52 @@
+import React, {useState, useEffect} from 'react';
 import ReactEcharts from 'echarts-for-react';
 
 
 function App() {
 
-  function get(url, processor = f => f, errorHandler = console.error) {
-    const d = new Date();
+  function getMini(url) {
     fetch(url, {
-      method: 'GET',
-      'Content-Type': 'application/json'
-    })
+        method: 'GET',
+        'Content-Type': 'application/json'
+      })
       .then(res => res.json())
-      .then(processor)
-      .then((res) => console.log(d.toISOString(), 'Get data from API:', res))
-      .catch(errorHandler);
+      .then(res => {
+        const data = res.map(v => ({
+          name: v['dttm'],
+          value: [v['dttm'], v['conc']]
+        }));
+        setMini(data);
+      })
+      .catch(console.error);
   };
 
-  const process_raw_data = data => {
-    console.log(data)
-  }
+  function getTsi(url) {
+    fetch(url, {
+        method: 'GET',
+        'Content-Type': 'application/json'
+      })
+      .then(res => res.json())
+      .then(res => {
+        const data = res.map(v => ({
+          name: v['dttm'],
+          value: [v['dttm'], v['conc']]
+        }));
+        setTsi(data);
+      })
+      .catch(console.error);
+  };
 
-  const url = 'http://atm-dev.site:1337/api/raw_mini?start=2021-10-29T18:00:00';
-  get(url, process_raw_data)
-
-  const mini = [];
-  const tsi = [];
+  const [mini, setMini] = useState([]);
+  const [tsi, setTsi] = useState([]);
+  let url;
+  let updateDttm;
+  useEffect(() => {
+    const dttm = '2021-10-29T08:20:00'
+    url = 'http://atm-dev.site:1337/api/raw_mini?start=2021-10-29T08:20:00';
+    getMini(url);
+    url = 'http://atm-dev.site:1337/api/raw_tsi?start=2021-10-29T08:20:00';
+    getTsi(url);
+  }, []);
 
   return ( <
     ReactEcharts 
@@ -37,12 +60,12 @@ function App() {
             params = params[0];
             var date = new Date(params.name);
             return (
-              date.getDate() +
-              '/' +
-              (date.getMonth() + 1) +
-              '/' +
-              date.getFullYear() +
-              ' : ' +
+              date.getFullYear() + '-' +
+              (date.getMonth() + 1) + '-' +
+              date.getDate() + ' ' +
+              date.getHours() + ':' +
+              date.getMinutes() + ':' +
+              date.getSeconds() + ', ' +
               params.value[1]
             );
           },
