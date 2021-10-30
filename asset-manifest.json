@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/cpc_comparison_frontend/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/cpc_comparison_frontend/static/js/main.ecf240e5.chunk.js",
+    "main.js.map": "/cpc_comparison_frontend/static/js/main.ecf240e5.chunk.js.map",
+    "runtime-main.js": "/cpc_comparison_frontend/static/js/runtime-main.99b9f606.js",
+    "runtime-main.js.map": "/cpc_comparison_frontend/static/js/runtime-main.99b9f606.js.map",
+    "static/js/2.b99f72d8.chunk.js": "/cpc_comparison_frontend/static/js/2.b99f72d8.chunk.js",
+    "static/js/2.b99f72d8.chunk.js.map": "/cpc_comparison_frontend/static/js/2.b99f72d8.chunk.js.map",
+    "static/js/3.c14fb3c8.chunk.js": "/cpc_comparison_frontend/static/js/3.c14fb3c8.chunk.js",
+    "static/js/3.c14fb3c8.chunk.js.map": "/cpc_comparison_frontend/static/js/3.c14fb3c8.chunk.js.map",
+    "index.html": "/cpc_comparison_frontend/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/cpc_comparison_frontend/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.b99f72d8.chunk.js.LICENSE.txt": "/cpc_comparison_frontend/static/js/2.b99f72d8.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.99b9f606.js",
+    "static/js/2.b99f72d8.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.ecf240e5.chunk.js"
+  ]
+}
