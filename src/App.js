@@ -6,7 +6,7 @@ import React, {
 import ReactEcharts from 'echarts-for-react';
 
 import Row from 'antd/lib/row';
-import Col from 'antd/lib/col';
+// import Col from 'antd/lib/col';
 
 
 function App() {
@@ -94,29 +94,22 @@ function App() {
 
   const dropOld = () => {
     const dttm = getYesterday();
-    console.log(mini.length)
-    console.log(mini[0]['name'])
-    console.log(mini.slice(-1)[0]['name'])
     let data;
     if (mini.length) {
       data = [...mini];
       while (new Date(dttm) > new Date(data[0]['name'])) {
-        console.log('shift mini')
         data.shift();
       };
       if (data.length !== mini.length) {
-        console.log('drop mini')
         setMini(data);
       };
     }
     if (tsi.length) {
       data = [...tsi];
       while (new Date(dttm) > new Date(data[0]['name'])) {
-        console.log('shift tsi')
         data.shift();
       };
       if (data.length !== tsi.length) {
-        console.log('drop tsi')
         setTsi(data);
       };
     };
@@ -132,7 +125,7 @@ function App() {
   }
 
   return (
-    <Row>
+    <Row style={{padding:20}}>
       <ReactEcharts 
         option = {{
           title: {
@@ -186,7 +179,7 @@ function App() {
             name: 'cn (cm-3)',
             boundaryGap: [0, '100%'],
             splitLine: {
-              show: false
+              show: true
             }
           },
           series: [
