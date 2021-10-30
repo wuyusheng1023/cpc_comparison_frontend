@@ -4,6 +4,9 @@ import ReactEcharts from 'echarts-for-react';
 
 function App() {
 
+  const [mini, setMini] = useState([]);
+  const [tsi, setTsi] = useState([]);
+
   function getMini(url) {
     fetch(url, {
         method: 'GET',
@@ -36,16 +39,25 @@ function App() {
       .catch(console.error);
   };
 
-  const [mini, setMini] = useState([]);
-  const [tsi, setTsi] = useState([]);
-  let url;
-  let updateDttm;
+  const getYesterday = () => {
+    const dttm = new Date();
+    dttm.setHours(dttm.getHours() + 2);
+    dttm.setDate(dttm.getDate() - 1);
+    return dttm.toISOString().slice(0, -5)
+  };
+
+  const getUrlMini = dttm => {
+    return `http://atm-dev.site:1337/api/raw_mini?start=${dttm}`
+  };
+  
+  const getUrlTsi = dttm => {
+    return `http://atm-dev.site:1337/api/raw_tsi?start=${dttm}`
+  };
+
   useEffect(() => {
-    const dttm = '2021-10-29T08:20:00'
-    url = 'http://atm-dev.site:1337/api/raw_mini?start=2021-10-29T08:20:00';
-    getMini(url);
-    url = 'http://atm-dev.site:1337/api/raw_tsi?start=2021-10-29T08:20:00';
-    getTsi(url);
+    const dttm = getYesterday();
+    getMini(getUrlMini(dttm));
+    getTsi(getUrlTsi(dttm));
   }, []);
 
   return ( <
