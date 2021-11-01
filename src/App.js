@@ -86,10 +86,18 @@ function App() {
   }, []);
 
   const appendNew = () => {
-    const lastDttmMini = mini.slice(-1)[0]['name'].slice(0, 19);
-    const lastDttmTsi = tsi.slice(-1)[0]['name'].slice(0, 19);
-    getMini(getUrlMini(lastDttmMini));
-    getTsi(getUrlTsi(lastDttmTsi));
+    try{
+      const lastDttmMini = mini.slice(-1)[0]['name'].slice(0, 19);
+      getMini(getUrlMini(lastDttmMini));
+    } catch {
+      console.log('no mini data');
+    };
+    try {
+      const lastDttmTsi = tsi.slice(-1)[0]['name'].slice(0, 19);
+      getTsi(getUrlTsi(lastDttmTsi));
+    } catch {
+      console.log('no Tsi data');
+    };
   };
 
   const dropOld = () => {
